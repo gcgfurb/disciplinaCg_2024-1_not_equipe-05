@@ -21,4 +21,4 @@ Mais deficil é realidade diminuída.
 A mode é realidade misturada. Mas usando algo de RA e RVi.    
 Meta Quest 3 RM
 
-[Equipe-01.pdf](Equipe-01.pdf)  
+[Slides.pdf](Slides.pdf)  
