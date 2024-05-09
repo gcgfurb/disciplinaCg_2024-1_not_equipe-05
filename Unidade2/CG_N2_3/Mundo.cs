@@ -57,7 +57,7 @@ namespace gcgcg
             _shaderVerde = new Shader("Shaders/shader.vert", "Shaders/shaderVerde.frag");
             _shaderAzul = new Shader("Shaders/shader.vert", "Shaders/shaderAzul.frag");
             #endregion
-  
+
             #region Objeto: Sr.Palito 
             srPalito = new SrPalito(mundo, ref rotuloAtual);
             #endregion        
@@ -98,15 +98,15 @@ namespace gcgcg
                 }
                 if (input.IsKeyPressed(Keys.S))
                 {
-                   srPalito.MudaTamanho(0.05);
+                    srPalito.MudarTamanho(0.05);
                 }
                 if (input.IsKeyPressed(Keys.A))
                 {
-                   srPalito.MudaTamanho(-0.05);
+                    srPalito.MudarTamanho(-0.05);
                 }
                 if (input.IsKeyPressed(Keys.X))
                 {
-                  srPalito.Girar(5);
+                    srPalito.Girar(5);
                 }
                 if (input.IsKeyPressed(Keys.Z))
                 {
@@ -114,7 +114,7 @@ namespace gcgcg
                 }
                 // if (input.IsKeyPressed(Keys.F))
                 // {
-                //     srPalito.GiraVoltaCompleta();
+                //     srPalito.GiraVoltaCompleta(5);
                 // }
             }
             #endregion

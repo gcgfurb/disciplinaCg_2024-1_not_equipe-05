@@ -9,8 +9,8 @@ namespace gcgcg
 {
   internal class SrPalito : Objeto
   {
-    public Ponto4D start { get; set; }
-    public Ponto4D end { get; set; }
+    public Ponto4D Start { get; set; }
+    public Ponto4D End { get; set; }
 
     private double angulo;
     private double raio;
@@ -20,45 +20,52 @@ namespace gcgcg
     {
       PrimitivaTipo = PrimitiveType.Lines;
       PrimitivaTamanho = 1;
-      start = new Ponto4D(0, 0);
-      end = new Ponto4D(0.35, 0.35);
+      Start = new Ponto4D(0, 0);
+      End = new Ponto4D(0.35, 0.35);
       dislocaX = 0;
       angulo = 45;
-      raio = Matematica.distancia(start, end);
+      raio = Matematica.distancia(Start, End);
 
-      base.PontosAdicionar(start);
-      base.PontosAdicionar(end);
+      base.PontosAdicionar(Start);
+      base.PontosAdicionar(End);
       base.ObjetoAtualizar();
     }
 
     private void Atualizar()
-    {   
-        end = Matematica.GerarPtosCirculo(angulo, raio);
-        start.X = dislocaX;
-        end.X += dislocaX;
-        base.PontosAlterar(start, 0);
-        base.PontosAlterar(end, 1);
-        base.ObjetoAtualizar();
+    {
+      End = Matematica.GerarPtosCirculo(angulo, raio);
+      Start.X = dislocaX;
+      End.X += dislocaX;
+      base.PontosAlterar(Start, 0);
+      base.PontosAlterar(End, 1);
+      base.ObjetoAtualizar();
     }
 
-    public void Movimentar(double value) {
-        dislocaX += value;
-        Atualizar();    
+    public void Movimentar(double value)
+    {
+      dislocaX += value;
+      Atualizar();
     }
 
-    public void MudaTamanho(double value) {
-        raio += value;
-        Atualizar();
+    public void MudarTamanho(double value)
+    {
+      raio += value;
+      Atualizar();
     }
 
-    public void Girar(double value) {
-        angulo += value;
-        Atualizar();
+    public void Girar(double value)
+    {
+      angulo += value;
+      Atualizar();
     }
 
-    // public void GiraVoltaCompleta() {
-    //     for ()
+    // public void GiraVoltaCompleta(double value)
+    // {
+    //   for (int i = 0; i < 72; i++)
+    //   {
+    //     angulo += value;
     //     Atualizar();
+    //   }
     // }
 
 
