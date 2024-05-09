@@ -24,7 +24,7 @@ namespace gcgcg
         private Objeto objetoSelecionado = null;
         private Poligono poligono = null;
         private Spline spline = null;
-        private int idxPoligono = 0;
+        private int indexPoligono = 0;
         private double qtdPontosSpline = 0.1;
 
         private readonly float[] _sruEixos =
@@ -121,43 +121,44 @@ namespace gcgcg
             {
                 if (input.IsKeyPressed(Keys.Space))
                 {
-                    if (objetoSelecionado == null) {
+                    if (objetoSelecionado == null)
+                    {
                         objetoSelecionado = mundo;
                         return;
                     }
                     objetoSelecionado.shaderObjeto = new("Shaders/shader.vert", "Shaders/shaderBranca.frag");
                     objetoSelecionado = mundo.GrafocenaBuscaProximo(objetoSelecionado);
                     objetoSelecionado.shaderObjeto = new("Shaders/shader.vert", "Shaders/shaderVermelha.frag");
-                    
-                    idxPoligono++;
-                    if (idxPoligono > 3) idxPoligono = 0;
+
+                    indexPoligono++;
+                    if (indexPoligono > 3) indexPoligono = 0;
                 }
                 if (input.IsKeyPressed(Keys.C))
                 {
-                    Ponto4D newPonto = new(objetoSelecionado.PontosId(0).X, objetoSelecionado.PontosId(0).Y + 0.05);
-                    objetoSelecionado.PontosAlterar(newPonto, 0);
-                    poligono.PontosAlterar(newPonto, idxPoligono);
+                    Ponto4D pontoNovo = new(objetoSelecionado.PontosId(0).X, objetoSelecionado.PontosId(0).Y + 0.05);
+                    objetoSelecionado.PontosAlterar(pontoNovo, 0);
+                    poligono.PontosAlterar(pontoNovo, indexPoligono);
                     spline.Atualizar();
                 }
                 if (input.IsKeyPressed(Keys.B))
                 {
-                    Ponto4D newPonto = new(objetoSelecionado.PontosId(0).X, objetoSelecionado.PontosId(0).Y - 0.05);
-                    objetoSelecionado.PontosAlterar(newPonto, 0);
-                    poligono.PontosAlterar(newPonto, idxPoligono);
+                    Ponto4D pontoNovo = new(objetoSelecionado.PontosId(0).X, objetoSelecionado.PontosId(0).Y - 0.05);
+                    objetoSelecionado.PontosAlterar(pontoNovo, 0);
+                    poligono.PontosAlterar(pontoNovo, indexPoligono);
                     spline.Atualizar();
                 }
-                 if (input.IsKeyPressed(Keys.D))
+                if (input.IsKeyPressed(Keys.D))
                 {
-                    Ponto4D newPonto = new(objetoSelecionado.PontosId(0).X + 0.05, objetoSelecionado.PontosId(0).Y);
-                    objetoSelecionado.PontosAlterar(newPonto, 0);
-                    poligono.PontosAlterar(newPonto, idxPoligono);
+                    Ponto4D pontoNovo = new(objetoSelecionado.PontosId(0).X + 0.05, objetoSelecionado.PontosId(0).Y);
+                    objetoSelecionado.PontosAlterar(pontoNovo, 0);
+                    poligono.PontosAlterar(pontoNovo, indexPoligono);
                     spline.Atualizar();
                 }
                 if (input.IsKeyPressed(Keys.E))
                 {
-                    Ponto4D newPonto = new(objetoSelecionado.PontosId(0).X - 0.05, objetoSelecionado.PontosId(0).Y);
-                    objetoSelecionado.PontosAlterar(newPonto, 0);
-                    poligono.PontosAlterar(newPonto, idxPoligono);
+                    Ponto4D pontoNovo = new(objetoSelecionado.PontosId(0).X - 0.05, objetoSelecionado.PontosId(0).Y);
+                    objetoSelecionado.PontosAlterar(pontoNovo, 0);
+                    poligono.PontosAlterar(pontoNovo, indexPoligono);
                     spline.Atualizar();
                 }
                 if (input.IsKeyPressed(Keys.L))
@@ -167,7 +168,7 @@ namespace gcgcg
                     if (qtdPontosSpline <= 0) qtdPontosSpline = 0.01;
                     spline.SplineQtdPto(qtdPontosSpline);
                 }
-                if (input.IsKeyPressed(Keys.Minus) || input.IsKeyPressed(Keys.KeyPadSubtract))	
+                if (input.IsKeyPressed(Keys.Minus) || input.IsKeyPressed(Keys.KeyPadSubtract))
                 {
                     qtdPontosSpline += 0.01;
                     spline.SplineQtdPto(qtdPontosSpline);

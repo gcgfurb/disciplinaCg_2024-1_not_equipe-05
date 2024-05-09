@@ -12,37 +12,41 @@ namespace gcgcg
         {
             PrimitivaTipo = PrimitiveType.LineLoop;
             raio = _raio;
-            for (int i = 0; i < 360; i += 1) {
+            for (int i = 0; i < 360; i += 1)
+            {
                 Ponto4D ponto = Matematica.GerarPtosCirculo(i, raio);
                 base.PontosAdicionar(ponto);
             }
-            base.ObjetoAtualizar();        
+            base.ObjetoAtualizar();
         }
 
-        public Circulo(Objeto paiRef,  ref char rotulo, double _raio, Ponto4D ptoDeslocamento) : base(paiRef, ref rotulo)
+        public Circulo(Objeto paiRef, ref char rotulo, double _raio, Ponto4D ptoDeslocamento) : base(paiRef, ref rotulo)
         {
             PrimitivaTipo = PrimitiveType.LineLoop;
             raio = _raio;
-            for (int i = 0; i < 360; i += 1) {
+            for (int i = 0; i < 360; i += 1)
+            {
                 Ponto4D ponto = Matematica.GerarPtosCirculo(i, raio);
                 ponto.X += ptoDeslocamento.X;
                 ponto.Y += ptoDeslocamento.Y;
                 base.PontosAdicionar(ponto);
             }
-            base.ObjetoAtualizar(); 
+            base.ObjetoAtualizar();
         }
 
-        public void Atualizar(Ponto4D ptoDeslocamento) {
-            for (int i = 0; i < 360; i += 1) {
+        public void Atualizar(Ponto4D ptoDeslocamento)
+        {
+            for (int i = 0; i < 360; i += 1)
+            {
                 Ponto4D ponto = Matematica.GerarPtosCirculo(i, raio);
                 ponto.X += ptoDeslocamento.X;
                 ponto.Y += ptoDeslocamento.Y;
                 base.PontosAlterar(ponto, i);
             }
-            base.ObjetoAtualizar(); 
+            base.ObjetoAtualizar();
         }
 
-        #if CG_Debug
+#if CG_Debug
         public override string ToString()
         {
         string retorno;
@@ -51,6 +55,6 @@ namespace gcgcg
         return (retorno);
 
         }
-        #endif
+#endif
     }
 }

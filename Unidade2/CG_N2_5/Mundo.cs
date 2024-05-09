@@ -26,7 +26,7 @@ namespace gcgcg
         private Objeto quadrado = null;
         private double dx = 0.3;
         private double dy = 0.3;
-        private Ponto4D pontoCentral = new Ponto4D(0.3, 0.3);         
+        private Ponto4D pontoCentral = new Ponto4D(0.3, 0.3);
 
         private readonly float[] _sruEixos =
         {
@@ -65,13 +65,14 @@ namespace gcgcg
             _shaderVermelha = new Shader("Shaders/shader.vert", "Shaders/shaderVermelha.frag");
             _shaderVerde = new Shader("Shaders/shader.vert", "Shaders/shaderVerde.frag");
             _shaderAzul = new Shader("Shaders/shader.vert", "Shaders/shaderAzul.frag");
-            #endregion 
-          
+            #endregion
+
             circuloMaior = new Circulo(mundo, ref rotuloAtual, 0.3, pontoCentral);
 
             var pontoInf = Matematica.GerarPtosCirculo(225, 0.3);
             var pontoSup = Matematica.GerarPtosCirculo(45, 0.3);
-            quadrado = new Retangulo(mundo, ref rotuloAtual, 
+
+            quadrado = new Retangulo(mundo, ref rotuloAtual,
                        new Ponto4D(pontoInf.X + pontoCentral.X, pontoInf.Y + pontoCentral.Y),
                        new Ponto4D(pontoSup.X + pontoCentral.X, pontoSup.Y + pontoCentral.Y))
             {
@@ -84,9 +85,10 @@ namespace gcgcg
             {
                 PrimitivaTamanho = 10
             };
-        } 
+        }
 
-        public void Atualizar(Ponto4D ptoDeslocamento) {
+        public void Atualizar(Ponto4D ptoDeslocamento)
+        {
             dx = ptoDeslocamento.X;
             dy = ptoDeslocamento.Y;
             circuloMenor.Atualizar(ptoDeslocamento);
@@ -112,38 +114,44 @@ namespace gcgcg
 
             #region Teclado
             var input = KeyboardState;
-            var newPto = new Ponto4D(dx, dy);
+            var pontoNovo = new Ponto4D(dx, dy);
 
             if (input.IsKeyPressed(Keys.Escape))
             {
                 Close();
                 return;
             }
-        
+
             if (input.IsKeyPressed(Keys.D))
             {
-                newPto.X += 0.01;
+                pontoNovo.X += 0.01;
             }
+
             if (input.IsKeyPressed(Keys.E))
             {
-                newPto.X -= 0.01;
+                pontoNovo.X -= 0.01;
             }
+
             if (input.IsKeyPressed(Keys.C))
             {
-                newPto.Y += 0.01;
+                pontoNovo.Y += 0.01;
             }
+
             if (input.IsKeyPressed(Keys.B))
             {
-                newPto.Y -= 0.01;
-            }              
+                pontoNovo.Y -= 0.01;
+            }
 
-            if (quadrado.Bbox().Dentro(ponto.PontosId(0))) {
+            if (quadrado.Bbox().Dentro(ponto.PontosId(0)))
+            {
                 quadrado.PrimitivaTipo = PrimitiveType.LineLoop;
-                Atualizar(newPto); 
-            } else {
-                quadrado.PrimitivaTipo = PrimitiveType.Points;                
-                if(Matematica.distanciaQuadrado(pontoCentral, newPto) < Math.Pow(circuloMaior.raio, 2)) 
-                    Atualizar(newPto);
+                Atualizar(pontoNovo);
+            }
+            else
+            {
+                quadrado.PrimitivaTipo = PrimitiveType.Points;
+                if (Matematica.distanciaQuadrado(pontoCentral, pontoNovo) < Math.Pow(circuloMaior.raio, 2))
+                    Atualizar(pontoNovo);
             }
             #endregion
         }
